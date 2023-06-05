@@ -32,7 +32,7 @@ provided prompt. The application will then send the email to the specified addre
 # Phase 2: Design
 
 ## Functional Requirements:
-## 1. User Input
+# 1. User Input
 
 The application should provide a user-friendly interface for collecting the following user inputs:
 
@@ -40,8 +40,7 @@ The application should provide a user-friendly interface for collecting the foll
 username@example.com).
 
 - **Email Content Prompt**: A text area should be provided for the user to input the prompt for generating the email content.
-
-## 2. GPT-3 Integration
+# 2. GPT-3 Integration
 
 Once the user input is provided, the application should interact with the GPT-3 API:
 
@@ -49,7 +48,7 @@ Once the user input is provided, the application should interact with the GPT-3 
 
 - **API Response Handling**: The application must correctly interpret the API response, extracting the generated content.
 
-## 3. Email Sending
+# 3. Email Sending
 
 With the generated email content, the application should send an email to the specified recipient:
 
@@ -59,8 +58,38 @@ With the generated email content, the application should send an email to the sp
 
 - **Send Email**: The application should handle the email sending process, ensuring successful delivery or providing clear error messages in case of failure.
 
-## 4. User Feedback
+# 4. User Feedback
 
 The application should provide feedback to the user:
 
 - **Operation Status**: The application should display a status message on the web page indicating the success or failure of the email sending operation.
+
+## System Architecture:
+# 1. Frontend
+
+The frontend is responsible for presenting the user interface and gathering user inputs. It's built using HTML, CSS, and JavaScript:
+
+- **HTML**: Defines the structure and layout of the application's web pages.
+- **CSS**: Styles the HTML elements, making the web pages visually appealing.
+- **JavaScript**: Handles the dynamic aspects of the interface, including form validation and AJAX calls to the server.
+
+The Frontend sends HTTP requests to the Backend and renders the responses. It's deployed on a web server and accessed by users through their web browsers.
+
+# 2. Backend
+
+The backend is built using Python and the Flask framework. It handles incoming requests from the frontend and interacts with the External APIs. It's comprised of:
+
+- **Routes**: Flask routes receive incoming HTTP requests from the frontend, call the appropriate business logic functions, and return HTTP responses.
+- **Business Logic**: This layer takes care of processing the user inputs, interacting with the GPT-3 API to generate email content, and sending the email via the SMTP server.
+- **Environment Variables**: The backend will use environment variables to securely store sensitive data like the OpenAI API key and the SMTP server credentials.
+
+The Backend is deployed on a server that can process Python code and handle HTTP requests.
+
+# 3. External APIs
+
+The system interacts with two external services:
+
+- **GPT-3 API**: Used to generate the email content based on the user's input. The API key is stored as an environment variable in the backend for security.
+- **SMTP Server**: Used to send emails. The server details and credentials are stored as environment variables in the backend.
+
+This high-level system architecture covers how the different parts of the system interact and their roles in processing user requests and responses.
